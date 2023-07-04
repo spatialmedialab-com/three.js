@@ -15,9 +15,17 @@ class VR {
 
 		let camera = null;
 		let renderer = null;
+
+		let container;
+		let scene;
+		let raycaster;
+
 		let video = null;
 
 		const intersectables = [];
+		const intersected = [];
+		const tempMatrix = new THREE.Matrix4();
+		let controls, groupGrab;
 
 		this.currentSession = null;
 
@@ -53,8 +61,28 @@ class VR {
 				const material = new THREE.MeshBasicMaterial( { map: texture } );
 				const planeMesh = new THREE.Mesh( planeGeometry, material );
 				planeMesh.position.set( 0, 1.5, - 0.75 );
-				editor.scene.add( planeMesh );
+				group.add( planeMesh );
 				intersectables.push( planeMesh );
+
+				let isMoving = false; // Flag to track if the planeMesh is being moved
+
+				// Add 'mousemove' event listener to the planeMesh
+				planeMesh.addEventListener('mousemove', function (event) {
+				if (isMoving) {
+					const { x, y, z } = event.data;
+					planeMesh.position.set(x, y, z); // Update the position of the planeMesh
+				}
+				});
+
+				// Set the flag to true when the mouse button is pressed on the planeMesh
+				planeMesh.addEventListener('mousedown', function () {
+				isMoving = true;
+				});
+
+				// Set the flag to false when the mouse button is released
+				planeMesh.addEventListener('mouseup', function () {
+				isMoving = false;
+				});
 
 				// controllers
 
