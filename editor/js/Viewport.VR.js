@@ -15,7 +15,6 @@ class VR {
 
 		let camera = null;
 		let renderer = null;
-		let video = null;
 
 		const intersectables = [];
 
@@ -42,10 +41,10 @@ class VR {
 
 				intersectables.push( mesh );
 
-				video = document.getElementById( 'video' );
-				video.style.display = 'none';
-				document.body.appendChild( video );
-				const texture = new THREE.VideoTexture( video );
+				const webcam = document.getElementById( 'webcam' );
+				webcam.style.display = 'none';
+				document.body.appendChild( webcam );
+				const texture = new THREE.VideoTexture( webcam );
 				texture.colorSpace = THREE.SRGBColorSpace;
 
 				const planeGeometry = new THREE.PlaneGeometry( 9, 16 );
@@ -99,8 +98,8 @@ class VR {
 
 					.then( stream => {
 
-						video.srcObject = stream;
-						video.play();
+						webcam.srcObject = stream;
+						webcam.play();
 
 					} )
 					.catch( error => {
