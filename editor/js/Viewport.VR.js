@@ -53,8 +53,8 @@ class VR {
 				const material = new THREE.MeshBasicMaterial( { map: texture } );
 				const planeMesh = new THREE.Mesh( planeGeometry, material );
 				planeMesh.position.set( 0, 1.5, - 0.75 );
-				group.add( planeMesh );
-				intersectables.push( planeMesh );
+				editor.scene.add( planeMesh );
+				// intersectables.push( planeMesh );
 
 				// controllers
 
