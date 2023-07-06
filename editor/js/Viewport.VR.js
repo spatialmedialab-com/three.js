@@ -16,16 +16,9 @@ class VR {
 		let camera = null;
 		let renderer = null;
 
-		let container;
-		let scene;
-		let raycaster;
-
 		let video = null;
 
 		const intersectables = [];
-		const intersected = [];
-		const tempMatrix = new THREE.Matrix4();
-		let controls, groupGrab;
 
 		this.currentSession = null;
 
@@ -64,24 +57,28 @@ class VR {
 				group.add( planeMesh );
 				intersectables.push( planeMesh );
 
-				let isMoving = false; // Flag to track if the planeMesh is being moved
+				// Grab
+
+				// Store the initial offset between the planeMesh and the controller
+				let offset = new THREE.Vector3();
+
+				// Add 'mousedown' event listener to the planeMesh
+				planeMesh.addEventListener('mousedown', function (event) {
+				offset.copy(planeMesh.position).sub(controller1.position); // Update the offset
+				planeMesh.parent = controller1; // Set the parent of planeMesh to controller1
+				});
 
 				// Add 'mousemove' event listener to the planeMesh
 				planeMesh.addEventListener('mousemove', function (event) {
-				if (isMoving) {
-					const { x, y, z } = event.data;
+				if (planeMesh.parent === controller1) { // Check if the parent is set to controller1
+					const { x, y, z } = controller1.position.clone().add(offset);
 					planeMesh.position.set(x, y, z); // Update the position of the planeMesh
 				}
 				});
 
-				// Set the flag to true when the mouse button is pressed on the planeMesh
-				planeMesh.addEventListener('mousedown', function () {
-				isMoving = true;
-				});
-
-				// Set the flag to false when the mouse button is released
+				// Add 'mouseup' event listener to the planeMesh 
 				planeMesh.addEventListener('mouseup', function () {
-				isMoving = false;
+				planeMesh.parent = group; // Set the parent back to group
 				});
 
 				// controllers
