@@ -299,7 +299,7 @@ class VR {
 				intersectObjects( controller1 );
 				intersectObjects( controller2 );
 
-				renderer.render( scene, camera, group );
+				renderer.render( scene, camera );
 
 			}
 
