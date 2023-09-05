@@ -41,6 +41,20 @@ class VR {
 
 				intersectables.push( mesh );
 
+				const webcam = document.getElementById( 'webcam' );
+				webcam.style.display = 'none';
+				document.body.appendChild( webcam );
+				const texture = new THREE.VideoTexture( webcam );
+				texture.colorSpace = THREE.SRGBColorSpace;
+
+				const planeGeometry = new THREE.PlaneGeometry( 9, 16 );
+				planeGeometry.scale( 0.075, 0.075, 0.075 );
+				const material = new THREE.MeshBasicMaterial( { map: texture } );
+				const planeMesh = new THREE.Mesh( planeGeometry, material );
+				planeMesh.position.set( 0, 1.5, - 0.75 );
+				editor.scene.add( planeMesh );
+					// intersectables.push( planeMesh );
+
 				// controllers
 
 				const geometry = new THREE.BufferGeometry();
@@ -76,6 +90,29 @@ class VR {
 			this.currentSession.addEventListener( 'end', onSessionEnded );
 
 			await renderer.xr.setSession( this.currentSession );
+
+			if ( navigator.mediaDevices && navigator.mediaDevices.getUserMedia ) {
+
+				const constraints = { video: { width: 1280, height: 720, facingMode: 'user' } };
+				navigator.mediaDevices.getUserMedia( constraints )
+
+					.then( stream => {
+
+						webcam.srcObject = stream;
+						webcam.play();
+
+					} )
+					.catch( error => {
+
+						console.error( 'Unable to access the camera/webcam.', error );
+
+					} );
+
+			} else {
+
+				console.error( 'MediaDevices interface not available.' );
+
+			}
 
 		};
 
