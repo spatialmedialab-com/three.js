@@ -33,13 +33,13 @@ class VR {
 				group = new InteractiveGroup( renderer );
 				editor.sceneHelpers.add( group );
 
-				const mesh = new HTMLMesh( sidebar );
-				mesh.position.set( 1, 1.5, - 0.5 );
-				mesh.rotation.y = - 0.5;
-				mesh.scale.setScalar( 2 );
-				group.add( mesh );
-
-				intersectables.push( mesh );
+				// // original HTML player interface
+				// const mesh = new HTMLMesh( sidebar );
+				// mesh.position.set( 1, 1.5, - 0.5 );
+				// mesh.rotation.y = - 0.5;
+				// mesh.scale.setScalar( 2 );
+				// group.add( mesh );
+				// intersectables.push( mesh );
 
 				const webcam = document.getElementById( 'webcam' );
 				webcam.style.display = 'none';
