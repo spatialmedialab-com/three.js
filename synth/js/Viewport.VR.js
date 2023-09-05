@@ -48,10 +48,10 @@ class VR {
 				texture.colorSpace = THREE.SRGBColorSpace;
 
 				const planeGeometry = new THREE.PlaneGeometry( 9, 16 );
-				planeGeometry.scale( 0.075, 0.075, 0.075 );
+				planeGeometry.scale( 0.05, 0.05, 0.05 );
 				const material = new THREE.MeshBasicMaterial( { map: texture } );
 				const planeMesh = new THREE.Mesh( planeGeometry, material );
-				planeMesh.position.set( 0, 1.5, - 0.75 );
+				planeMesh.position.set( 0, 1.5, - 0.5 );
 					// editor.scene.add( planeMesh );
 				group.add( planeMesh );
 				intersectables.push( planeMesh );
