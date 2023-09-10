@@ -265,7 +265,7 @@ async function networkFirst( request ) {
 
 		let response = await fetch( request );
 
-		if ( request.url.endsWith( 'editor/' ) || request.url.endsWith( 'editor/index.html' ) ) { // copied from coi-serviceworker
+		if ( request.url.endsWith( 'synth/' ) || request.url.endsWith( 'synth/index.html' ) ) { // copied from coi-serviceworker
 
 			const newHeaders = new Headers( response.headers );
 			newHeaders.set( 'Cross-Origin-Embedder-Policy', 'require-corp' );
