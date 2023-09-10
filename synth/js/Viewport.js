@@ -2,20 +2,20 @@ import * as THREE from 'three';
 
 import { TransformControls } from 'three/addons/controls/TransformControls.js';
 
-import { UIPanel } from './libs/ui.js';
+import { UIPanel } from '../editor/js/libs/ui.js';
 
-import { EditorControls } from './EditorControls.js';
+import { EditorControls } from '../editor/js/EditorControls.js';
 
-import { ViewportCamera } from './Viewport.Camera.js';
-import { ViewportShading } from './Viewport.Shading.js';
-import { ViewportInfo } from './Viewport.Info.js';
+import { ViewportCamera } from '../editor/js/Viewport.Camera.js';
+import { ViewportShading } from '../editor/js/Viewport.Shading.js';
+import { ViewportInfo } from '../editor/js/Viewport.Info.js';
 
-import { ViewHelper } from './Viewport.ViewHelper.js';
+import { ViewHelper } from '../editor/js/Viewport.ViewHelper.js';
 import { VR } from './Viewport.VR.js';
 
-import { SetPositionCommand } from './commands/SetPositionCommand.js';
-import { SetRotationCommand } from './commands/SetRotationCommand.js';
-import { SetScaleCommand } from './commands/SetScaleCommand.js';
+import { SetPositionCommand } from '../editor/js/commands/SetPositionCommand.js';
+import { SetRotationCommand } from '../editor/js/commands/SetRotationCommand.js';
+import { SetScaleCommand } from '../editor/js/commands/SetScaleCommand.js';
 
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
