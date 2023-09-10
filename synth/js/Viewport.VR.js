@@ -24,7 +24,7 @@ class VR {
 
 			const sidebar = document.getElementById( 'sidebar' );
 			sidebar.style.width = '300px';
-			sidebar.style.height = '700px';
+			sidebar.style.height = '1920px';
 
 			//
 
