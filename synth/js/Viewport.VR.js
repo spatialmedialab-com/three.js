@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-import { HTMLMesh } from 'three/addons/interactive/HTMLMesh.js';
+//import { HTMLMesh } from 'three/addons/interactive/HTMLMesh.js';
 import { InteractiveGroup } from 'three/addons/interactive/InteractiveGroup.js';
 
 import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
@@ -15,6 +15,8 @@ class VR {
 
 		let camera = null;
 		let renderer = null;
+
+		const webcam = document.getElementById( 'webcam' );
 
 		const intersectables = [];
 
@@ -52,7 +54,7 @@ class VR {
 				const material = new THREE.MeshBasicMaterial( { map: texture } );
 				const planeMesh = new THREE.Mesh( planeGeometry, material );
 				planeMesh.position.set( 0, 1.5, - 0.5 );
-					// editor.scene.add( planeMesh );
+				// editor.scene.add( planeMesh );
 				group.add( planeMesh );
 				intersectables.push( planeMesh );
 
@@ -94,7 +96,7 @@ class VR {
 
 			if ( navigator.mediaDevices && navigator.mediaDevices.getUserMedia ) {
 
-				const constraints = { video: { width: 1280, height: 720, facingMode: 'user' } };
+				const constraints = { video: { width: 1920, height: 1280, facingMode: 'user' } };
 				navigator.mediaDevices.getUserMedia( constraints )
 
 					.then( stream => {
